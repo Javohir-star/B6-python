@@ -5,8 +5,8 @@ from pathlib import Path
 print("Current dir:", os.getcwd())
 
 # 2
-os.makedirs("../OS/subfolder_example", exist_ok=True)
-os.chdir("../OS/subfolder_example")
+os.makedirs("OS/subfolder_example", exist_ok=True)
+os.chdir("OS/subfolder_example")
 print("After cd:", os.getcwd())
 
 # 3
@@ -75,7 +75,7 @@ for i in os.listdir():
         os.rename(i, i[:-4] + ".bak")
 
 # 18
-for root, dirs, files in os.walk("../OS"):
+for root, dirs, files in os.walk("OS"):
     for f in files:
         print(os.path.abspath(os.path.join(root, f)))
 
@@ -118,15 +118,15 @@ print("Deleted:", not newf.exists())
 
 # 9
 print("Items:")
-for i in Path("../OS").iterdir():
+for i in Path("OS").iterdir():
     print(i.name)
 
 # 10
-print("*.py:", list(Path("../OS").glob("*.py")))
+print("*.py:", list(Path("OS").glob("*.py")))
 
 # 11
 print("Recursive *.py:")
-for i in Path("../OS").rglob("*.py"):
+for i in Path("OS").rglob("*.py"):
     print(i)
 
 # 12
@@ -145,7 +145,7 @@ print("parent:", p.parent)
 print("parts:", p.parts)
 
 # 16
-p = Path("../OS")
+p = Path("OS")
 files = 0
 dirs = 0
 for i in p.iterdir():
@@ -156,24 +156,24 @@ for i in p.iterdir():
 print("Files:", files, "| Dirs:", dirs)
 
 # 17
-for i in Path("../OS").glob("*.log"):
+for i in Path("OS").glob("*.log"):
     i.unlink()
     print("Deleted .log:", i)
 
 # 18
-for i in Path("../OS").rglob("*.txt"):
+for i in Path("OS").rglob("*.txt"):
     print("TXT path:", i.resolve())
 
 # 19
 backup = Path("backup")
 backup.mkdir(exist_ok=True)
-for i in Path("../OS").glob("*.txt"):
+for i in Path("OS").glob("*.txt"):
     data = i.read_text()
     (backup / i.name).write_text(data)
 print("Backed up .txt files to backup/")
 
 # 20
-os.chdir("../OS")
+os.chdir("OS")
 print("Python files inside current dir:")
-for i in Path("../OS").glob("*.py"):
+for i in Path("OS").glob("*.py"):
     print(i.name)
